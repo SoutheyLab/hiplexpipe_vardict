@@ -118,7 +118,7 @@ def make_pipeline(state):
     (pipeline.merge(
         task_func=stages.concatenate_vcfs,
         name='concatenate_vcfs',
-        input=output_from('sort_vcfs')
+        input=output_from('sort_vcfs'),
         output='variants/vardict/combined.vcf.gz')
         .follows('index_vcfs'))
  
