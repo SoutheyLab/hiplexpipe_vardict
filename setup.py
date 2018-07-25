@@ -3,13 +3,13 @@
 from setuptools import setup
 
 setup(
-    name='hiplexpipe',
+    name='hiplexpipe_vardict',
     version='0.1',
     author='Khalid Mahmood',
     author_email='khalid.mahmood@unimelb.edu.au',
     packages=['src'],
     entry_points={
-        'console_scripts': ['hiplexpipe = src.main:main']
+        'console_scripts': ['hiplexpipe_vardict = src.main:main']
     },
     url='https://github.com/khalidm/hiplexpipe',
     license='LICENSE.txt',
