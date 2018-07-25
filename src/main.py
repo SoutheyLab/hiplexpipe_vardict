@@ -19,10 +19,6 @@ import sys
 from config import Config
 from state import State
 from logger import Logger
-from pipeline import make_pipeline_map
-from pipeline import make_pipeline_process
-from pipeline import make_pipeline_call
-
 import error_codes
 
 # default place to save cluster job scripts
