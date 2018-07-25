@@ -19,6 +19,7 @@ import sys
 from config import Config
 from state import State
 from logger import Logger
+from pipeline import make_pipeline
 import error_codes
 
 # default place to save cluster job scripts
