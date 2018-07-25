@@ -75,6 +75,7 @@ def main():
 #        pipeline = make_pipeline_process(state)
 #    else:
 #        pipeline = make_pipeline_map(state)
+    
     pipeline = make_pipeline(state)
 
     # Run (or print) the pipeline
