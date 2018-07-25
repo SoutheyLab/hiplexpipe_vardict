@@ -7,7 +7,7 @@ Copyright: 2015
 
 See ../README.md for details about how to use the program.
 
-Repository: https://github.com/khalidm/hiplexpipe
+Repository: https://github.com/khalidm/hiplexpipe_vardict
 '''
 
 from __future__ import print_function
@@ -43,7 +43,7 @@ def parse_command_line():
         default=DEFAULT_JOBSCRIPT_DIR,
         help='Directory to store cluster job scripts created by the ' \
              'pipeline, defaults to {}'.format(DEFAULT_JOBSCRIPT_DIR))
-    parser.add_argument('--mode', type=str, default='map', choices=['map', 'call', 'process'],  help='set to "map" to run bwa and generate stats files, "call" to run undr_rover and haplotypecaller on a map directory, or "process" to process multiple map/call directories into a final combined vcf.  Default is map')
+    parser.add_argument(help='set to "map" to run bwa and generate stats files, "call" to run undr_rover and haplotypecaller on a map directory, or "process" to process multiple map/call directories into a final combined vcf.  Default is map')
     parser.add_argument('--version', action='version',
         version='%(prog)s ' + version)
     return parser.parse_args()
@@ -74,12 +74,13 @@ def main():
                   drmaa_session=drmaa_session)
     
     # Build the pipeline workflow
-    if options.mode == 'call':
-        pipeline = make_pipeline_call(state)
-    elif options.mode == 'process':
-        pipeline = make_pipeline_process(state)
-    else:
-        pipeline = make_pipeline_map(state)
+#    if options.mode == 'call':
+#        pipeline = make_pipeline_call(state)
+#    elif options.mode == 'process':
+#        pipeline = make_pipeline_process(state)
+#    else:
+#        pipeline = make_pipeline_map(state)
+    pipeline = make_pipeline(state)
 
     # Run (or print) the pipeline
     cmdline.run(options)
