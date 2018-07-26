@@ -86,7 +86,7 @@ class Stages(object):
             vardict_bed = self.vardict_bed 
 
         command = 'export PATH=/home/jste0021/scripts/git_controlled/VarDict:$PATH; ' \
-                  'vardict -G {reference} -f {AF_THR} -N {sample_name} -b {bam_in} -c 1 -S 2 -E 3 -g 4 {vardict_bed} | ' \
+                  'vardict -a -G {reference} -f {AF_THR} -N {sample_name} -b {bam_in}  {vardict_bed} | ' \
                   'teststrandbias.R | ' \
                   'var2vcf_valid_b37_chrnames.pl -N {sample_name} -E -f {AF_THR} > {vcf_out}'.format(
                              reference=self.reference,
