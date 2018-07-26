@@ -140,7 +140,7 @@ def make_pipeline(state):
         task_func=stages.apply_vep,
         name='apply_vep',
         input=output_from('vt_decompose_normalise'),
-        filter=suffix('.decomp.norm.vcf'),
+        filter=suffix('.decomp.norm.vcf.gz'),
         output='.decomp.norm.vep.vcf')
         .follows('index_final_vcf'))
 
