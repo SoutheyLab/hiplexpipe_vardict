@@ -127,7 +127,9 @@ class Stages(object):
             merge_commands.append(command2)
             final_command = ''.join(merge_commands)
         else:
-            final_command = 'bcftools merge -O z -o {vcf_out} {vcf_files} '.format(vcf_out=vcf_out, vcf_files=vcf_files_in)
+            
+            filelist = ' '.join([vcf for vcf in vcf_files_in])
+            final_command = 'bcftools merge -O z -o {vcf_out} {vcf_files} '.format(vcf_out=vcf_out, vcf_files=filelist)
 
         run_stage(self.state, 'concatenate_vcfs', final_command)
 
