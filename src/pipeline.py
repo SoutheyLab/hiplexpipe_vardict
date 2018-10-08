@@ -35,7 +35,7 @@ def make_pipeline(state):
         input=output_from('original_fastqs'),
         # Match the R1 (read 1) FASTQ file and grab the path and sample name.
         # This will be the first input to the stage.
-        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-.]+)_R1.fastq.gz'),
+        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-\.]+)_R1.fastq.gz'),
         # Add one more inputs to the stage:
         #    1. The corresponding R2 FASTQ file
         add_inputs=add_inputs(
@@ -51,7 +51,7 @@ def make_pipeline(state):
         task_func=stages.intersect_bed,
         name='intersect_bed',
         input=output_from('align_bwa'),
-        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-.]+).sort.hq.bam'),
+        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-\.]+).sort.hq.bam'),
         output='metrics/summary/{sample[0]}.intersectbed.bam')
 
     pipeline.transform(
@@ -65,7 +65,7 @@ def make_pipeline(state):
         task_func=stages.genome_reads,
         name='genome_reads',
         input=output_from('align_bwa'),
-        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-.]+).sort.hq.bam'),
+        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-\.]+).sort.hq.bam'),
         output='metrics/summary/{sample[0]}.mapped_to_genome.txt')
 
     pipeline.transform(
@@ -79,7 +79,7 @@ def make_pipeline(state):
         task_func=stages.total_reads,
         name='total_reads',
         input=output_from('align_bwa'),
-        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-.]+).sort.hq.bam'),
+        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-\.]+).sort.hq.bam'),
         output='metrics/summary/{sample[0]}.total_raw_reads.txt')
 
     pipeline.collate(
@@ -97,7 +97,7 @@ def make_pipeline(state):
         task_func=stages.run_vardict,
         name='run_vardict',
         input=output_from('align_bwa'),
-        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-.]+).sort.hq.bam'),
+        filter=formatter('.+/(?P<sample>[a-zA-Z0-9_-\.]+).sort.hq.bam'),
         output='variants/vardict/{sample[0]}.vcf',
         extras=['{sample[0]}'])   
  
@@ -105,7 +105,7 @@ def make_pipeline(state):
         task_func=stages.sort_vcfs,
         name='sort_vcfs',
         input=output_from('run_vardict'),
-        filter=formatter('variants/vardict/(?P<sample>[a-zA-Z0-9_-.]+).vcf'),
+        filter=formatter('variants/vardict/(?P<sample>[a-zA-Z0-9_-\.]+).vcf'),
         output='variants/vardict/{sample[0]}.sorted.vcf.gz')
 
     pipeline.transform(
